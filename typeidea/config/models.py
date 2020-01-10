@@ -21,6 +21,10 @@ class Link(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = "友链"
 
+    def __str__(self):   # 配置__str__方法，打印对象中具体的属性值
+        return self.title
+
+
 class SideBar(models.Model):
     STATUS_SHOW = 1
     STATUS_HIDE = 0
@@ -46,3 +50,6 @@ class SideBar(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "侧边栏"
+
+    def __str__(self):   # 配置__str__方法，打印对象中具体的属性值
+        return self.title

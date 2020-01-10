@@ -20,3 +20,6 @@ class Comment(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "评论"
+
+    def __str__(self):   # 配置__str__方法，打印对象中具体的属性值
+        return self.target
