@@ -7,8 +7,16 @@ from .models import Post, Category, Tag
 
 # Register your models here.
 # 分类
+
+class PostInline(admin.TabularInline):   # StackedInline 样式不同
+    fields = ('title','desc')
+    extra = 1  # 控制额外多几个
+    model = Post
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    inlines = [PostInline, ]
     list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')  # 控制保存后的列表显示字段信息
     fields = ('name', 'status', 'is_nav')  # 控制新增页面显示的字段信息
 
