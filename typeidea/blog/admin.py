@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-
+from .adminforms import PostAdminForm
 from .models import Post, Category, Tag
 
 
@@ -50,6 +50,7 @@ class TagAdmin(admin.ModelAdmin):
 # 文章
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    form = PostAdminForm
     list_display = [
         'title', 'category', 'status','owner', 'created_time', 'operator'
     ]
