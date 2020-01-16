@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
+
+from typeidea.custom_site import custom_site
 from .adminforms import PostAdminForm
 from .models import Post, Category, Tag
 
@@ -56,7 +58,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 # 文章
-@admin.register(Post)
+@admin.register(Post,site=custom_site)
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
     list_display = [
@@ -106,7 +108,7 @@ class PostAdmin(admin.ModelAdmin):
     def operator(self, obj):
         return format_html(
             '<a href="{}">编辑</a>',
-            reverse('admin:blog_post_change', args=(obj.id,))
+            reverse('cus_admin:blog_post_change', args=(obj.id,))
         )
 
     operator.short_description = '操作'
